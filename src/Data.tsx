@@ -278,7 +278,7 @@ const questionsData: Question[] = [
         id: 40,
         questionType: '漢字を書こう',
         question: 'みのりのあき',
-        answerForm: '実りの秋',
+        answerForm: '[　　]の[　　]',
         answer:'実りの秋',
       },
 ]
