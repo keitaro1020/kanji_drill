@@ -1,0 +1,30 @@
+name: github pages deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['15.4']
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install and build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI: true
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v3
+      env:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
